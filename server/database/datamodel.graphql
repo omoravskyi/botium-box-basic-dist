@@ -46,6 +46,10 @@ type Chatbot {
   description: String
   tags: [String!]
   allowHtmlDisplay: Boolean
+  retryUserSaysNumRetries: Int
+  retryUserSaysFactor: Int
+  retryUserSaysMinTimeout: Int
+  retryUserSaysOnErrorRegexp: [String!]
   capabilities: [Capability!]! @relation(name: "ChatbotCapabilities")
   sources: [Capability!]! @relation(name: "ChatbotSources")
   envs: [Capability!]! @relation(name: "ChatbotEnvs")
@@ -199,6 +203,7 @@ type TestSessionJobLog {
   createdAt: DateTime!
   updatedAt: DateTime!
   testSessionJob: TestSessionJob!
+  order: Int
   log: String!
 }
 

@@ -1,5 +1,5 @@
-# source: http://127.0.0.1:4466/box/dev
-# timestamp: Fri May 31 2019 14:48:21 GMT+0200 (Central European Summer Time)
+# source: http://192.168.99.100:4466/box/dev
+# timestamp: Sat Jul 27 2019 22:31:42 GMT+0200 (GMT+02:00)
 
 type Agent implements Node {
   id: ID!
@@ -1560,6 +1560,10 @@ type Chatbot implements Node {
   description: String
   tags: [String!]!
   allowHtmlDisplay: Boolean
+  retryUserSaysNumRetries: Int
+  retryUserSaysFactor: Int
+  retryUserSaysMinTimeout: Int
+  retryUserSaysOnErrorRegexp: [String!]!
   capabilities(where: CapabilityWhereInput, orderBy: CapabilityOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Capability!]
   sources(where: CapabilityWhereInput, orderBy: CapabilityOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Capability!]
   envs(where: CapabilityWhereInput, orderBy: CapabilityOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Capability!]
@@ -1579,7 +1583,11 @@ input ChatbotCreateInput {
   name: String!
   description: String
   allowHtmlDisplay: Boolean
+  retryUserSaysNumRetries: Int
+  retryUserSaysFactor: Int
+  retryUserSaysMinTimeout: Int
   tags: ChatbotCreatetagsInput
+  retryUserSaysOnErrorRegexp: ChatbotCreateretryUserSaysOnErrorRegexpInput
   client: ClientCreateOneInput
   capabilities: CapabilityCreateManyInput
   sources: CapabilityCreateManyInput
@@ -1589,6 +1597,10 @@ input ChatbotCreateInput {
 input ChatbotCreateOneInput {
   create: ChatbotCreateInput
   connect: ChatbotWhereUniqueInput
+}
+
+input ChatbotCreateretryUserSaysOnErrorRegexpInput {
+  set: [String!]
 }
 
 input ChatbotCreatetagsInput {
@@ -1617,6 +1629,12 @@ enum ChatbotOrderByInput {
   description_DESC
   allowHtmlDisplay_ASC
   allowHtmlDisplay_DESC
+  retryUserSaysNumRetries_ASC
+  retryUserSaysNumRetries_DESC
+  retryUserSaysFactor_ASC
+  retryUserSaysFactor_DESC
+  retryUserSaysMinTimeout_ASC
+  retryUserSaysMinTimeout_DESC
 }
 
 type ChatbotPreviousValues {
@@ -1627,6 +1645,10 @@ type ChatbotPreviousValues {
   description: String
   tags: [String!]!
   allowHtmlDisplay: Boolean
+  retryUserSaysNumRetries: Int
+  retryUserSaysFactor: Int
+  retryUserSaysMinTimeout: Int
+  retryUserSaysOnErrorRegexp: [String!]!
 }
 
 type ChatbotSubscriptionPayload {
@@ -1672,7 +1694,11 @@ input ChatbotUpdateDataInput {
   name: String
   description: String
   allowHtmlDisplay: Boolean
+  retryUserSaysNumRetries: Int
+  retryUserSaysFactor: Int
+  retryUserSaysMinTimeout: Int
   tags: ChatbotUpdatetagsInput
+  retryUserSaysOnErrorRegexp: ChatbotUpdateretryUserSaysOnErrorRegexpInput
   client: ClientUpdateOneInput
   capabilities: CapabilityUpdateManyInput
   sources: CapabilityUpdateManyInput
@@ -1683,7 +1709,11 @@ input ChatbotUpdateInput {
   name: String
   description: String
   allowHtmlDisplay: Boolean
+  retryUserSaysNumRetries: Int
+  retryUserSaysFactor: Int
+  retryUserSaysMinTimeout: Int
   tags: ChatbotUpdatetagsInput
+  retryUserSaysOnErrorRegexp: ChatbotUpdateretryUserSaysOnErrorRegexpInput
   client: ClientUpdateOneInput
   capabilities: CapabilityUpdateManyInput
   sources: CapabilityUpdateManyInput
@@ -1694,7 +1724,11 @@ input ChatbotUpdateManyMutationInput {
   name: String
   description: String
   allowHtmlDisplay: Boolean
+  retryUserSaysNumRetries: Int
+  retryUserSaysFactor: Int
+  retryUserSaysMinTimeout: Int
   tags: ChatbotUpdatetagsInput
+  retryUserSaysOnErrorRegexp: ChatbotUpdateretryUserSaysOnErrorRegexpInput
 }
 
 input ChatbotUpdateOneRequiredInput {
@@ -1702,6 +1736,10 @@ input ChatbotUpdateOneRequiredInput {
   connect: ChatbotWhereUniqueInput
   update: ChatbotUpdateDataInput
   upsert: ChatbotUpsertNestedInput
+}
+
+input ChatbotUpdateretryUserSaysOnErrorRegexpInput {
+  set: [String!]
 }
 
 input ChatbotUpdatetagsInput {
@@ -1890,6 +1928,72 @@ input ChatbotWhereInput {
 
   """All values that are not equal to given value."""
   allowHtmlDisplay_not: Boolean
+  retryUserSaysNumRetries: Int
+
+  """All values that are not equal to given value."""
+  retryUserSaysNumRetries_not: Int
+
+  """All values that are contained in given list."""
+  retryUserSaysNumRetries_in: [Int!]
+
+  """All values that are not contained in given list."""
+  retryUserSaysNumRetries_not_in: [Int!]
+
+  """All values less than the given value."""
+  retryUserSaysNumRetries_lt: Int
+
+  """All values less than or equal the given value."""
+  retryUserSaysNumRetries_lte: Int
+
+  """All values greater than the given value."""
+  retryUserSaysNumRetries_gt: Int
+
+  """All values greater than or equal the given value."""
+  retryUserSaysNumRetries_gte: Int
+  retryUserSaysFactor: Int
+
+  """All values that are not equal to given value."""
+  retryUserSaysFactor_not: Int
+
+  """All values that are contained in given list."""
+  retryUserSaysFactor_in: [Int!]
+
+  """All values that are not contained in given list."""
+  retryUserSaysFactor_not_in: [Int!]
+
+  """All values less than the given value."""
+  retryUserSaysFactor_lt: Int
+
+  """All values less than or equal the given value."""
+  retryUserSaysFactor_lte: Int
+
+  """All values greater than the given value."""
+  retryUserSaysFactor_gt: Int
+
+  """All values greater than or equal the given value."""
+  retryUserSaysFactor_gte: Int
+  retryUserSaysMinTimeout: Int
+
+  """All values that are not equal to given value."""
+  retryUserSaysMinTimeout_not: Int
+
+  """All values that are contained in given list."""
+  retryUserSaysMinTimeout_in: [Int!]
+
+  """All values that are not contained in given list."""
+  retryUserSaysMinTimeout_not_in: [Int!]
+
+  """All values less than the given value."""
+  retryUserSaysMinTimeout_lt: Int
+
+  """All values less than or equal the given value."""
+  retryUserSaysMinTimeout_lte: Int
+
+  """All values greater than the given value."""
+  retryUserSaysMinTimeout_gt: Int
+
+  """All values greater than or equal the given value."""
+  retryUserSaysMinTimeout_gte: Int
   client: ClientWhereInput
   capabilities_every: CapabilityWhereInput
   capabilities_some: CapabilityWhereInput
@@ -9362,6 +9466,7 @@ type TestSessionJobLog implements Node {
   createdAt: DateTime!
   updatedAt: DateTime!
   testSessionJob: TestSessionJob!
+  order: Int
   log: String!
 }
 
@@ -9376,6 +9481,7 @@ type TestSessionJobLogConnection {
 }
 
 input TestSessionJobLogCreateInput {
+  order: Int
   log: String!
   testSessionJob: TestSessionJobCreateOneWithoutLogsInput!
 }
@@ -9386,6 +9492,7 @@ input TestSessionJobLogCreateManyWithoutTestSessionJobInput {
 }
 
 input TestSessionJobLogCreateWithoutTestSessionJobInput {
+  order: Int
   log: String!
 }
 
@@ -9405,6 +9512,8 @@ enum TestSessionJobLogOrderByInput {
   createdAt_DESC
   updatedAt_ASC
   updatedAt_DESC
+  order_ASC
+  order_DESC
   log_ASC
   log_DESC
 }
@@ -9413,6 +9522,7 @@ type TestSessionJobLogPreviousValues {
   id: ID!
   createdAt: DateTime!
   updatedAt: DateTime!
+  order: Int
   log: String!
 }
 
@@ -9509,6 +9619,28 @@ input TestSessionJobLogScalarWhereInput {
 
   """All values greater than or equal the given value."""
   updatedAt_gte: DateTime
+  order: Int
+
+  """All values that are not equal to given value."""
+  order_not: Int
+
+  """All values that are contained in given list."""
+  order_in: [Int!]
+
+  """All values that are not contained in given list."""
+  order_not_in: [Int!]
+
+  """All values less than the given value."""
+  order_lt: Int
+
+  """All values less than or equal the given value."""
+  order_lte: Int
+
+  """All values greater than the given value."""
+  order_gt: Int
+
+  """All values greater than or equal the given value."""
+  order_gte: Int
   log: String
 
   """All values that are not equal to given value."""
@@ -9591,15 +9723,18 @@ input TestSessionJobLogSubscriptionWhereInput {
 }
 
 input TestSessionJobLogUpdateInput {
+  order: Int
   log: String
   testSessionJob: TestSessionJobUpdateOneRequiredWithoutLogsInput
 }
 
 input TestSessionJobLogUpdateManyDataInput {
+  order: Int
   log: String
 }
 
 input TestSessionJobLogUpdateManyMutationInput {
+  order: Int
   log: String
 }
 
@@ -9621,6 +9756,7 @@ input TestSessionJobLogUpdateManyWithWhereNestedInput {
 }
 
 input TestSessionJobLogUpdateWithoutTestSessionJobDataInput {
+  order: Int
   log: String
 }
 
@@ -9728,6 +9864,28 @@ input TestSessionJobLogWhereInput {
 
   """All values greater than or equal the given value."""
   updatedAt_gte: DateTime
+  order: Int
+
+  """All values that are not equal to given value."""
+  order_not: Int
+
+  """All values that are contained in given list."""
+  order_in: [Int!]
+
+  """All values that are not contained in given list."""
+  order_not_in: [Int!]
+
+  """All values less than the given value."""
+  order_lt: Int
+
+  """All values less than or equal the given value."""
+  order_lte: Int
+
+  """All values greater than the given value."""
+  order_gt: Int
+
+  """All values greater than or equal the given value."""
+  order_gte: Int
   log: String
 
   """All values that are not equal to given value."""

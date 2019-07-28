@@ -1,6 +1,6 @@
 {
   "name": "botium-box",
-  "version": "1.7.2",
+  "version": "1.7.4",
   "description": "Botium Box Community Edition",
   "engines": {
     "node": ">=8.3"

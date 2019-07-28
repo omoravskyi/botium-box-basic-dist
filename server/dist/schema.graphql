@@ -39,11 +39,13 @@ directive @clientFilter on FIELD_DEFINITION
 directive @assertClient(query: [String!], argsBase: [String], idParam: [String], selector: [String]) on FIELD_DEFINITION
 directive @clientConnector(dataParam: [String!]) on FIELD_DEFINITION
 directive @clientDisconnector(dataParam: String!) on FIELD_DEFINITION
+directive @licenseOperable(dataParam: [String!]) on FIELD_DEFINITION
 directive @tagsResolver(dataParam: String!, field: String) on FIELD_DEFINITION
 
 type Query {
   autologin: AuthPayload
   me: User
+  license: License
 
   testprojects(where: TestProjectWhereInput, orderBy: TestProjectOrderByInput, skip: Int, first: Int): [TestProject!]! @hasPermission(permission: "TESTPROJECTS_SELECT") @clientFilter
   testproject(id: ID!): TestProject @hasPermission(permission: "TESTPROJECTS_SELECT") @assertClient(query: "testProject")
@@ -110,77 +112,78 @@ type Query {
 type Mutation {
   login(name: String, email: String, password: String!): AuthPayload!
 
-  createTestProject(testProject: TestProjectCreateInput!): TestProject! @hasPermission(permission: "TESTPROJECTS_CREATE") @assertClient(query: ["chatbot", "testSet"], argsBase: ["testProject.chatbot.connect", "testProject.testSets.connect"]) @clientConnector(dataParam: ["testProject", "testProject.chatbot.create", "testProject.testSets.create"]) @tagsResolver(dataParam: "testProject")
-  quickstartTestProject(testProject: TestProjectCreateInput!, startProject: Boolean!): ID! @hasPermission(permission: "TESTPROJECTS_CREATE") @assertClient(query: ["chatbot", "testSet"], argsBase: ["testProject.chatbot.connect", "testProject.testSets.connect"]) @clientConnector(dataParam: ["testProject", "testProject.chatbot.create", "testProject.testSets.create"]) @tagsResolver(dataParam: "testProject")
-  startTestProject(id: ID!): ID! @hasPermission(permission: "TESTSESSIONS_CREATE") @assertClient(query: "testProject")
-  updateTestProject(id: ID!, testProject: TestProjectUpdateInput!): TestProject! @hasPermission(permission: "TESTPROJECTS_UPDATE") @assertClient(query: "testProject") @clientDisconnector(dataParam: "testProject") @tagsResolver(dataParam: "testProject")
-  deleteTestProject(id: ID!): Boolean! @hasPermission(permission: "TESTPROJECTS_DELETE") @assertClient(query: "testProject")
-  createAgent(agent: AgentCreateInput!): Agent! @hasPermission(permission: "AGENTS_CREATE") @tagsResolver(dataParam: "agent")
-  updateAgent(id: ID!, agent: AgentUpdateInput!): Agent! @hasPermission(permission: "AGENTS_UPDATE") @tagsResolver(dataParam: "agent")
-  deleteAgent(id: ID!): Boolean! @hasPermission(permission: "AGENTS_DELETE")
+  createTestProject(testProject: TestProjectCreateInput!): TestProject! @hasPermission(permission: "TESTPROJECTS_CREATE") @assertClient(query: ["chatbot", "testSet"], argsBase: ["testProject.chatbot.connect", "testProject.testSets.connect"]) @clientConnector(dataParam: ["testProject", "testProject.chatbot.create", "testProject.testSets.create"]) @tagsResolver(dataParam: "testProject") @licenseOperable
+  quickstartTestProject(testProject: TestProjectCreateInput!, startProject: Boolean!): ID! @hasPermission(permission: "TESTPROJECTS_CREATE") @assertClient(query: ["chatbot", "testSet"], argsBase: ["testProject.chatbot.connect", "testProject.testSets.connect"]) @clientConnector(dataParam: ["testProject", "testProject.chatbot.create", "testProject.testSets.create"]) @tagsResolver(dataParam: "testProject") @licenseOperable
+  startTestProject(id: ID!): TestSessionCreated! @hasPermission(permission: "TESTSESSIONS_CREATE") @assertClient(query: "testProject") @licenseOperable
+  updateTestProject(id: ID!, testProject: TestProjectUpdateInput!): TestProject! @hasPermission(permission: "TESTPROJECTS_UPDATE") @assertClient(query: "testProject") @clientDisconnector(dataParam: "testProject") @tagsResolver(dataParam: "testProject") @licenseOperable
+  deleteTestProject(id: ID!): Boolean! @hasPermission(permission: "TESTPROJECTS_DELETE") @assertClient(query: "testProject") @licenseOperable
+  createAgent(agent: AgentCreateInput!): Agent! @hasPermission(permission: "AGENTS_CREATE") @tagsResolver(dataParam: "agent") @licenseOperable
+  updateAgent(id: ID!, agent: AgentUpdateInput!): Agent! @hasPermission(permission: "AGENTS_UPDATE") @tagsResolver(dataParam: "agent") @licenseOperable
+  deleteAgent(id: ID!): Boolean! @hasPermission(permission: "AGENTS_DELETE") @licenseOperable
 
-  createChatbot(chatbot: ChatbotCreateInput!): Chatbot! @hasPermission(permission: "CHATBOTS_CREATE") @clientConnector(dataParam: "chatbot") @tagsResolver(dataParam: "chatbot")
-  updateChatbot(id: ID!, chatbot: ChatbotUpdateInput!): Chatbot! @hasPermission(permission: "CHATBOTS_UPDATE") @assertClient(query: "chatbot") @clientDisconnector(dataParam: "chatbot") @tagsResolver(dataParam: "chatbot")
-  deleteChatbot(id: ID!): Boolean! @hasPermission(permission: "CHATBOTS_DELETE") @assertClient(query: "chatbot")
-  createTestSession(testSession: TestSessionCreateInput!): TestSession! @hasPermission(permission: "TESTSESSIONS_CREATE") @assertClient(query: ["chatbot", "testSet"], argsBase: ["testSession.chatbot.connect", "testSession.testSets.connect"]) @clientConnector(dataParam: ["testSession", "testSession.chatbot.create", "testSession.testSets.create"]) @tagsResolver(dataParam: "testSession")
-  importFromDialogflow(chatbotId: ID!, testSetId: ID, newTestSetName: String, importer: String): ID! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: ["chatbot", "testSet"], idParam: ["chatbotId", "testSetId"])
-  importFromAlexa(chatbotId: ID!, testSetId: ID, newTestSetName: String, buildconvos: Boolean, expandcustomslots: Boolean, expandbuiltinslots: Boolean, expandbuiltinslotsid: String, slotsamples: String, invocation: String): ID! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: ["chatbot", "testSet"], idParam: ["chatbotId", "testSetId"])
-  importFromWatson(chatbotId: ID!, testSetId: ID, newTestSetName: String, buildconvos: Boolean): ID! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: ["chatbot", "testSet"], idParam: ["chatbotId", "testSetId"])
+  createChatbot(chatbot: ChatbotCreateInput!): Chatbot! @hasPermission(permission: "CHATBOTS_CREATE") @clientConnector(dataParam: "chatbot") @tagsResolver(dataParam: "chatbot") @licenseOperable
+  updateChatbot(id: ID!, chatbot: ChatbotUpdateInput!): Chatbot! @hasPermission(permission: "CHATBOTS_UPDATE") @assertClient(query: "chatbot") @clientDisconnector(dataParam: "chatbot") @tagsResolver(dataParam: "chatbot") @licenseOperable
+  deleteChatbot(id: ID!): Boolean! @hasPermission(permission: "CHATBOTS_DELETE") @assertClient(query: "chatbot") @licenseOperable
+  createTestSession(testSession: TestSessionCreateInput!): TestSession! @hasPermission(permission: "TESTSESSIONS_CREATE") @assertClient(query: ["chatbot", "testSet"], argsBase: ["testSession.chatbot.connect", "testSession.testSets.connect"]) @clientConnector(dataParam: ["testSession", "testSession.chatbot.create", "testSession.testSets.create"]) @tagsResolver(dataParam: "testSession") @licenseOperable
+  importFromDialogflow(chatbotId: ID!, testSetId: ID, newTestSetName: String, importer: String): ID! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: ["chatbot", "testSet"], idParam: ["chatbotId", "testSetId"]) @licenseOperable
+  importFromAlexa(chatbotId: ID!, testSetId: ID, newTestSetName: String, buildconvos: Boolean, expandcustomslots: Boolean, expandbuiltinslots: Boolean, expandbuiltinslotsid: String, slotsamples: String, invocation: String): ID! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: ["chatbot", "testSet"], idParam: ["chatbotId", "testSetId"]) @licenseOperable
+  importFromWatson(chatbotId: ID!, testSetId: ID, newTestSetName: String, buildconvos: Boolean): ID! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: ["chatbot", "testSet"], idParam: ["chatbotId", "testSetId"]) @licenseOperable
 
-  deleteTestSession(id: ID!): Boolean! @hasPermission(permission: "TESTSESSIONS_DELETE") @assertClient(query: "testSession")
-  cancelTestSession(id: ID!): Boolean! @hasPermission(permission: "TESTSESSIONS_CREATE") @assertClient(query: "testSession")
-  stopTestSession(id: ID!): Boolean! @hasPermission(permission: "TESTSESSIONS_CREATE") @assertClient(query: "testSession")
+  deleteTestSession(id: ID!): Boolean! @hasPermission(permission: "TESTSESSIONS_DELETE") @assertClient(query: "testSession") @licenseOperable
+  cancelTestSession(id: ID!): Boolean! @hasPermission(permission: "TESTSESSIONS_CREATE") @assertClient(query: "testSession") @licenseOperable
+  stopTestSession(id: ID!): Boolean! @hasPermission(permission: "TESTSESSIONS_CREATE") @assertClient(query: "testSession") @licenseOperable
 
-  createPerformanceTestSession(testProjectId: ID!, options: PerformanceTestSessionCreate!): ID! @hasPermission(permission: "PERFORMANCETESTSESSIONS_CREATE") @assertClient(query: ["chatbot", "testSet"], argsBase: ["performanceTestSession.chatbot.connect", "performanceTestSession.testSets.connect"]) @clientConnector(dataParam: ["performanceTestSession", "performanceTestSession.chatbot.create", "performanceTestSession.testSets.create"]) @tagsResolver(dataParam: "options")
-  deletePerformanceTestSession(id: ID!): Boolean! @hasPermission(permission: "PERFORMANCETESTSESSIONS_DELETE") @assertClient(query: "performanceTestSession")
+  createPerformanceTestSession(testProjectId: ID!, options: PerformanceTestSessionCreate!): ID! @hasPermission(permission: "PERFORMANCETESTSESSIONS_CREATE") @assertClient(query: ["chatbot", "testSet"], argsBase: ["performanceTestSession.chatbot.connect", "performanceTestSession.testSets.connect"]) @clientConnector(dataParam: ["performanceTestSession", "performanceTestSession.chatbot.create", "performanceTestSession.testSets.create"]) @tagsResolver(dataParam: "options") @licenseOperable
+  deletePerformanceTestSession(id: ID!): Boolean! @hasPermission(permission: "PERFORMANCETESTSESSIONS_DELETE") @assertClient(query: "performanceTestSession") @licenseOperable
 
-  createTestSet(testSet: TestSetCreateInput!): TestSet! @hasPermission(permission: "TESTSETS_CREATE") @clientConnector(dataParam: "testSet") @tagsResolver(dataParam: "testSet")
-  updateTestSet(id: ID!, testSet: TestSetUpdateInput!): TestSet! @hasPermission(permission: "TESTSETS_UPDATE") @assertClient(query: "testSet") @clientDisconnector(dataParam: "testSet") @tagsResolver(dataParam: "testSet")
-  deleteTestSet(id: ID!): Boolean! @hasPermission(permission: "TESTSETS_DELETE") @assertClient(query: "testSet")
-  cloneTestSet(id: ID!, options: CloneTestSetOptionsChoosen!): TestSet! @hasPermission(permission: "TESTSETS_CREATE") @assertClient(query: "testSet")
-  exportTestSetToGit(id: ID!, options: ExportTestSetToGitOptionsChoosen!): Boolean! @hasPermission(permission: "TESTSETS_UPDATE") @assertClient(query: "testSet")
-  exportTestSetToFolder(id: ID!, options: ExportTestSetToFolderOptionsChoosen!): Boolean! @hasPermission(permission: "TESTSETS_UPDATE") @assertClient(query: "testSet")
-  updateTestSetStats(id: ID!): TestSet! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: "testSet")
-  createTestSetScript(testSetScript: TestSetScriptCreateInput!): TestSetScript! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: "testSet", idParam: "testSetScript.testSet.connect.id", selector: "{ client { id } }") @clientConnector(dataParam: ["testSetScript.testSet.create"])
-  updateTestSetScript(id: ID!, testSetScript: TestSetScriptUpdateInput!): TestSetScript! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: "testSetScript", selector: "{ testSet { client { id } } }")
-  deleteTestSetScript(id: ID!): Boolean! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: "testSetScript", selector: "{ testSet { client { id } } }")
-  createTestSetRepository(testSetRepository: TestSetRepositoryCreateInput!): TestSetRepository! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: "testSet", idParam: "testSetRepository.testSet.connect.id", selector: "{ client { id } }") @clientConnector(dataParam: ["testSetRepository.testSet.create"])
-  updateTestSetRepository(id: ID!, testSetRepository: TestSetRepositoryUpdateInput!): TestSetRepository! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: "testSetRepository", selector: "{ testSet { client { id } } }")
-  deleteTestSetRepository(id: ID!): Boolean! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: "testSetRepository", selector: "{ testSet { client { id } } }")
-  createTestSetFolder(testSetFolder: TestSetFolderCreateInput!): TestSetFolder! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: "testSet", idParam: "testSetFolder.testSet.connect.id", selector: "{ client { id } }") @clientConnector(dataParam: ["testSetFolder.testSet.create"])
-  updateTestSetFolder(id: ID!, testSetFolder: TestSetFolderUpdateInput!): TestSetFolder! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: "testSetFolder", selector: "{ testSet { client { id } } }")
-  deleteTestSetFolder(id: ID!): Boolean! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: "testSetFolder", selector: "{ testSet { client { id } } }")
-  createTestSetExcel(testSetExcel: TestSetExcelCreateInput!): TestSetExcel! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: "testSet", idParam: "testSetExcel.testSet.connect.id", selector: "{ client { id } }") @clientConnector(dataParam: ["testSetExcel.testSet.create"])
-  updateTestSetExcel(id: ID!, testSetExcel: TestSetExcelUpdateInput!): TestSetExcel! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: "testSetExcel", selector: "{ testSet { client { id } } }")
-  deleteTestSetExcel(id: ID!): Boolean! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: "testSetExcel", selector: "{ testSet { client { id } } }")
+  createTestSet(testSet: TestSetCreateInput!): TestSet! @hasPermission(permission: "TESTSETS_CREATE") @clientConnector(dataParam: "testSet") @tagsResolver(dataParam: "testSet") @licenseOperable
+  updateTestSet(id: ID!, testSet: TestSetUpdateInput!): TestSet! @hasPermission(permission: "TESTSETS_UPDATE") @assertClient(query: "testSet") @clientDisconnector(dataParam: "testSet") @tagsResolver(dataParam: "testSet") @licenseOperable
+  deleteTestSet(id: ID!): Boolean! @hasPermission(permission: "TESTSETS_DELETE") @assertClient(query: "testSet") @licenseOperable
+  cloneTestSet(id: ID!, options: CloneTestSetOptionsChoosen!): TestSet! @hasPermission(permission: "TESTSETS_CREATE") @assertClient(query: "testSet") @licenseOperable
+  exportTestSetToGit(id: ID!, options: ExportTestSetToGitOptionsChoosen!): Boolean! @hasPermission(permission: "TESTSETS_UPDATE") @assertClient(query: "testSet") @licenseOperable
+  exportTestSetToFolder(id: ID!, options: ExportTestSetToFolderOptionsChoosen!): Boolean! @hasPermission(permission: "TESTSETS_UPDATE") @assertClient(query: "testSet") @licenseOperable
+  importTestSetFromZip(id: ID!, options: ImportTestSetFromZipOptionsChoosen!): Boolean! @hasPermission(permission: "TESTSETS_UPDATE") @assertClient(query: "testSet") @licenseOperable
+  updateTestSetStats(id: ID!): TestSet! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: "testSet") @licenseOperable
+  createTestSetScript(testSetScript: TestSetScriptCreateInput!): TestSetScript! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: "testSet", idParam: "testSetScript.testSet.connect.id", selector: "{ client { id } }") @clientConnector(dataParam: ["testSetScript.testSet.create"]) @licenseOperable
+  updateTestSetScript(id: ID!, testSetScript: TestSetScriptUpdateInput!): TestSetScript! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: "testSetScript", selector: "{ testSet { client { id } } }") @licenseOperable
+  deleteTestSetScript(id: ID!): Boolean! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: "testSetScript", selector: "{ testSet { client { id } } }") @licenseOperable
+  createTestSetRepository(testSetRepository: TestSetRepositoryCreateInput!): TestSetRepository! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: "testSet", idParam: "testSetRepository.testSet.connect.id", selector: "{ client { id } }") @clientConnector(dataParam: ["testSetRepository.testSet.create"]) @licenseOperable
+  updateTestSetRepository(id: ID!, testSetRepository: TestSetRepositoryUpdateInput!): TestSetRepository! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: "testSetRepository", selector: "{ testSet { client { id } } }") @licenseOperable
+  deleteTestSetRepository(id: ID!): Boolean! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: "testSetRepository", selector: "{ testSet { client { id } } }") @licenseOperable
+  createTestSetFolder(testSetFolder: TestSetFolderCreateInput!): TestSetFolder! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: "testSet", idParam: "testSetFolder.testSet.connect.id", selector: "{ client { id } }") @clientConnector(dataParam: ["testSetFolder.testSet.create"]) @licenseOperable
+  updateTestSetFolder(id: ID!, testSetFolder: TestSetFolderUpdateInput!): TestSetFolder! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: "testSetFolder", selector: "{ testSet { client { id } } }") @licenseOperable
+  deleteTestSetFolder(id: ID!): Boolean! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: "testSetFolder", selector: "{ testSet { client { id } } }") @licenseOperable
+  createTestSetExcel(testSetExcel: TestSetExcelCreateInput!): TestSetExcel! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: "testSet", idParam: "testSetExcel.testSet.connect.id", selector: "{ client { id } }") @clientConnector(dataParam: ["testSetExcel.testSet.create"]) @licenseOperable
+  updateTestSetExcel(id: ID!, testSetExcel: TestSetExcelUpdateInput!): TestSetExcel! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: "testSetExcel", selector: "{ testSet { client { id } } }") @licenseOperable
+  deleteTestSetExcel(id: ID!): Boolean! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: "testSetExcel", selector: "{ testSet { client { id } } }") @licenseOperable
 
-  createDeviceSet(deviceSet: DeviceSetCreateInput!): DeviceSet! @hasPermission(permission: "DEVICESETS_CREATE") @tagsResolver(dataParam: "deviceSet")
-  updateDeviceSet(id: ID!, deviceSet: DeviceSetUpdateInput!): DeviceSet! @hasPermission(permission: "DEVICESETS_UPDATE") @tagsResolver(dataParam: "deviceSet")
-  deleteDeviceSet(id: ID!): Boolean! @hasPermission(permission: "DEVICESETS_DELETE")
+  createDeviceSet(deviceSet: DeviceSetCreateInput!): DeviceSet! @hasPermission(permission: "DEVICESETS_CREATE") @tagsResolver(dataParam: "deviceSet") @licenseOperable
+  updateDeviceSet(id: ID!, deviceSet: DeviceSetUpdateInput!): DeviceSet! @hasPermission(permission: "DEVICESETS_UPDATE") @tagsResolver(dataParam: "deviceSet") @licenseOperable
+  deleteDeviceSet(id: ID!): Boolean! @hasPermission(permission: "DEVICESETS_DELETE") @licenseOperable
 
-  createUser(user: UserCreateInput!): User! @hasPermission(permission: "USERS_MANAGE")
-  updateUser(id: ID!, user: UserUpdateInput!): User! @hasPermission(permission: "USERS_MANAGE")
-  deleteUser(id: ID!): Boolean! @hasPermission(permission: "USERS_MANAGE")
+  createUser(user: UserCreateInput!): User! @hasPermission(permission: "USERS_MANAGE") @licenseOperable
+  updateUser(id: ID!, user: UserUpdateInput!): User! @hasPermission(permission: "USERS_MANAGE") @licenseOperable
+  deleteUser(id: ID!): Boolean! @hasPermission(permission: "USERS_MANAGE") @licenseOperable
 
-  createApiKey(apiKey: ApiKeyCreateInput!): ApiKey! @hasPermission(permission: "APIKEYS_MANAGE")
-  updateApiKey(id: ID!, apiKey: ApiKeyUpdateInput!): ApiKey! @hasPermission(permission: "APIKEYS_MANAGE")
-  deleteApiKey(id: ID!): Boolean! @hasPermission(permission: "APIKEYS_MANAGE")
+  createApiKey(apiKey: ApiKeyCreateInput!): ApiKey! @hasPermission(permission: "APIKEYS_MANAGE") @licenseOperable
+  updateApiKey(id: ID!, apiKey: ApiKeyUpdateInput!): ApiKey! @hasPermission(permission: "APIKEYS_MANAGE") @licenseOperable
+  deleteApiKey(id: ID!): Boolean! @hasPermission(permission: "APIKEYS_MANAGE") @licenseOperable
 
-  createDeviceProvider(deviceProvider: DeviceProviderCreateInput!): DeviceProvider! @hasPermission(permission: "DEVICEPROVIDERS_MANAGE")
-  updateDeviceProvider(id: ID!, deviceProvider: DeviceProviderUpdateInput!): DeviceProvider! @hasPermission(permission: "DEVICEPROVIDERS_MANAGE")
-  deleteDeviceProvider(id: ID!): Boolean! @hasPermission(permission: "DEVICEPROVIDERS_MANAGE")
+  createDeviceProvider(deviceProvider: DeviceProviderCreateInput!): DeviceProvider! @hasPermission(permission: "DEVICEPROVIDERS_MANAGE") @licenseOperable
+  updateDeviceProvider(id: ID!, deviceProvider: DeviceProviderUpdateInput!): DeviceProvider! @hasPermission(permission: "DEVICEPROVIDERS_MANAGE") @licenseOperable
+  deleteDeviceProvider(id: ID!): Boolean! @hasPermission(permission: "DEVICEPROVIDERS_MANAGE") @licenseOperable
 
-  createRegisteredComponent(registeredComponent: RegisteredComponentCreateInput!): RegisteredComponent! @hasPermission(permission: "REGISTEREDCOMPONENTS_MANAGE")
-  updateRegisteredComponent(id: ID!, registeredComponent: RegisteredComponentUpdateInput!): RegisteredComponent! @hasPermission(permission: "REGISTEREDCOMPONENTS_MANAGE")
-  deleteRegisteredComponent(id: ID!): Boolean! @hasPermission(permission: "REGISTEREDCOMPONENTS_MANAGE")
+  createRegisteredComponent(registeredComponent: RegisteredComponentCreateInput!): RegisteredComponent! @hasPermission(permission: "REGISTEREDCOMPONENTS_MANAGE") @licenseOperable
+  updateRegisteredComponent(id: ID!, registeredComponent: RegisteredComponentUpdateInput!): RegisteredComponent! @hasPermission(permission: "REGISTEREDCOMPONENTS_MANAGE") @licenseOperable
+  deleteRegisteredComponent(id: ID!): Boolean! @hasPermission(permission: "REGISTEREDCOMPONENTS_MANAGE") @licenseOperable
 
-  updateSystemSettings(systemSettings: SystemSettingsUpdateInput!): SystemSettings! @hasPermission(permission: "SYSTEMSETTINGS_MANAGE")
-  importPrisma(prismaFile: String!): Boolean! @hasPermission(permission: "IMPORT_PRISMA")
+  updateSystemSettings(systemSettings: SystemSettingsUpdateInput!): SystemSettings! @hasPermission(permission: "SYSTEMSETTINGS_MANAGE") @licenseOperable
+  importPrisma(prismaFile: String!): Boolean! @hasPermission(permission: "IMPORT_PRISMA") @licenseOperable
 
-  liveChatStartBot(chatbotId: ID!): String! @hasPermission(permission: "CHATBOTS_LIVECHAT") @assertClient(query: "chatbot", idParam: "chatbotId")
-  liveChatSendToBot(chatbotId: ID!, conversationId: String!, convoStep: String!): Boolean! @hasPermission(permission: "CHATBOTS_LIVECHAT") @assertClient(query: "chatbot", idParam: "chatbotId")
-  liveChatStopBot(chatbotId: ID!, conversationId: String!): Boolean! @hasPermission(permission: "CHATBOTS_LIVECHAT") @assertClient(query: "chatbot", idParam: "chatbotId")
-  liveChatSaveConvoSteps(chatbotId: ID!, conversationId: String!, testSetId: ID, newTestSetName: String, testCaseName: String!, splitToConvoAndUtterancesMe: Boolean!, splitToConvoAndUtterancesBot: Boolean!, types: [String!]!): ID! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: ["chatbot", "testSet"], idParam: ["chatbotId", "testSetId"])
+  liveChatStartBot(chatbotId: ID!): String! @hasPermission(permission: "CHATBOTS_LIVECHAT") @assertClient(query: "chatbot", idParam: "chatbotId") @licenseOperable
+  liveChatSendToBot(chatbotId: ID!, conversationId: String!, convoStep: String!): Boolean! @hasPermission(permission: "CHATBOTS_LIVECHAT") @assertClient(query: "chatbot", idParam: "chatbotId") @licenseOperable
+  liveChatStopBot(chatbotId: ID!, conversationId: String!): Boolean! @hasPermission(permission: "CHATBOTS_LIVECHAT") @assertClient(query: "chatbot", idParam: "chatbotId") @licenseOperable
+  liveChatSaveConvoSteps(chatbotId: ID!, conversationId: String!, testSetId: ID, newTestSetName: String, testCaseName: String!, splitToConvoAndUtterancesMe: Boolean!, splitToConvoAndUtterancesBot: Boolean!, types: [String!]!): ID! @hasAnyPermission(permissions: ["TESTSETS_CREATE", "TESTSETS_UPDATE"]) @assertClient(query: ["chatbot", "testSet"], idParam: ["chatbotId", "testSetId"]) @licenseOperable
 }
 
 type Subscription {
@@ -313,6 +316,12 @@ input ExportTestSetToFolderOptionsChoosen {
   subdirectory: String
 }
 
+input ImportTestSetFromZipOptionsChoosen {
+  filename: String!,
+  filecontent: String!,
+  overwrite: Boolean
+}
+
 type AuthPayload {
   token: String!
   user: User!
@@ -326,6 +335,14 @@ type User {
   name: String!
   roles: [UserRole!]
   clients: [Client!]
+}
+
+type License {
+  edition: String!
+  isValid: Boolean!
+  isOperable: Boolean!
+  validity: DateTime
+  operability: DateTime
 }
 
 input PerformanceTestSessionCreate {
@@ -361,5 +378,10 @@ type PerformanceTestSessionSimplifiedWithStatus implements Node {
 type PerformanceTestSessionStatus implements Node {
   id: ID!
   status: String!
+}
+
+type TestSessionCreated implements Node {
+  id: ID!
+  testSets: [TestSet!]!
 }
 
