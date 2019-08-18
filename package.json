@@ -5,41 +5,16 @@
   "engines": {
     "node": ">=8.3"
   },
-  "bin": {
-    "botium-box-cli": "./bin/botium-box-cli.js"
-  },
   "scripts": {
-    "eslint": "eslint \"./src/**/*.js\" \"./bin/**/*.js\"",
     "start:agent": "cd agent && npm run start:dist",
     "start:server": "cd server && npm run prisma-deploy && npm run prisma-seed && npm run start:dist",
     "start": "npm-run-all -p start:agent start:server",
     "prepare:agent": "cd agent && npm install --no-optional --production",
     "prepare:server": "cd server && npm install --no-optional --production",
-    "postinstall": "npm-run-all prepare:agent prepare:server",
-    "start-standalone:backend": "cd server/database && cross-env docker-compose up",
-    "start-standalone:frontend": "./wait-for-it.sh -s 127.0.0.1:4466 -- cross-env DEBUG=botium* PRISMA_ENDPOINT=http://127.0.0.1:4466/box/standalone PRISMA_SECRET=mysecret123 JWT_SECRET=jwtsecret123 BOTIUMBOX_QUEUE_REDISURL=redis://127.0.0.1:6379 npm start",
-    "start-standalone:frontend:docker": "HOST_IP=`/sbin/ip route|awk '/default/ { print $3 }'` && ./wait-for-it.sh -t 300 -s $HOST_IP:4466 -- cross-env DEBUG=botium* PRISMA_ENDPOINT=http://$HOST_IP:4466/box/standalone PRISMA_SECRET=mysecret123 JWT_SECRET=jwtsecret123 BOTIUMBOX_QUEUE_REDISURL=redis://$HOST_IP:6379 npm start",
-    "start-box:frontend:docker": "PRIMSA_CHECK=`echo $PRISMA_ENDPOINT|awk -F/ '{ print $3 }'` && ./wait-for-it.sh -t 300 -s $PRIMSA_CHECK -- npm start",
-    "docker:build-standalone": "docker build -f Dockerfile.standalone . -t botium/botium-box-ce:standalone-$npm_package_version",
-    "docker:run-standalone": "docker run --rm -p 4000:4000 -v `pwd`/server/testsets:/app/server/testsets -v `pwd`/resources:/app/server/resources -v `pwd`/resources:/app/agent/resources -v /var/run/docker.sock:/var/run/docker.sock --name botium-box-ce -it botium/botium-box-ce:standalone-$npm_package_version",
-    "docker:publish-standalone": "docker push botium/botium-box-ce:standalone-$npm_package_version && docker tag botium/botium-box-ce:standalone-$npm_package_version botium/botium-box-ce:latest && docker push botium/botium-box-ce:latest",
-    "docker:build-box": "docker build -f Dockerfile.box . -t botium/botium-box-ce:box-$npm_package_version",
-    "docker:run-box": "docker run --rm -p 4000:4000 -v `pwd`/server/testsets:/app/server/testsets -v `pwd`/resources:/app/server/resources -v `pwd`/resources:/app/agent/resources --name botium-box-ce -it botium/botium-box-ce:box-$npm_package_version",
-    "docker:publish-box": "docker push botium/botium-box-ce:box-$npm_package_version && docker tag botium/botium-box-ce:box-$npm_package_version botium/botium-box-ce:box-latest && docker push botium/botium-box-ce:box-latest"
+    "postinstall": "npm-run-all prepare:agent prepare:server"
   },
   "dependencies": {
     "cross-env": "^5.2.0",
-    "debug": "^4.1.1",
-    "npm-run-all": "^4.1.3",
-    "opn": "^5.4.0",
-    "yargs": "^12.0.5"
-  },
-  "devDependencies": {
-    "eslint": "^4.19.1",
-    "eslint-config-standard": "^11.0.0",
-    "eslint-plugin-import": "^2.10.0",
-    "eslint-plugin-node": "^6.0.1",
-    "eslint-plugin-promise": "^3.7.0",
-    "eslint-plugin-standard": "^3.0.1"
+    "npm-run-all": "^4.1.3"
   }
 }
