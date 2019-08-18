@@ -33,4 +33,4 @@ VOLUME /app/agent/resources
 
 EXPOSE 4000
 
-CMD ["npm", "run", "start-box:frontend:docker"]
+CMD ./wait-for-it.sh -s -t 300 prisma:4466 -- npm start
