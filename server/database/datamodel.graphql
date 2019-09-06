@@ -137,6 +137,7 @@ type TestSessionTestCaseResult {
   testcaseSource: String!
   success: Boolean!
   err: String
+  errDetails: String
   duration: Int
   steps: [TestSessionTestCaseResultTranscript!]!
   attachments: [TestSessionTestCaseResultAttachment!]!
@@ -162,6 +163,7 @@ type TestSessionTestCaseResultTranscript {
   stepDuration: Int
   botDuration: Int
   err: String
+  errDetails: String
 }
 
 type TestSessionTestCaseResultAttachment {
@@ -387,7 +389,7 @@ type TestSetExcel {
   updatedAt: DateTime!
   name: String!
   filename: String!
-  filecontent: String!
+  filecontent: String
   testSet: TestSet!
 }
 

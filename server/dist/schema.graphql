@@ -179,6 +179,7 @@ type Mutation {
 
   updateSystemSettings(systemSettings: SystemSettingsUpdateInput!): SystemSettings! @hasPermission(permission: "SYSTEMSETTINGS_MANAGE") @licenseOperable
   importPrisma(prismaFile: String!): Boolean! @hasPermission(permission: "IMPORT_PRISMA") @licenseOperable
+  importPrismaFromUrl(prismaUrl: String!): Boolean! @hasPermission(permission: "IMPORT_PRISMA") @licenseOperable
 
   liveChatStartBot(chatbotId: ID!): String! @hasPermission(permission: "CHATBOTS_LIVECHAT") @assertClient(query: "chatbot", idParam: "chatbotId") @licenseOperable
   liveChatSendToBot(chatbotId: ID!, conversationId: String!, convoStep: String!): Boolean! @hasPermission(permission: "CHATBOTS_LIVECHAT") @assertClient(query: "chatbot", idParam: "chatbotId") @licenseOperable

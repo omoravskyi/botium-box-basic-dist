@@ -1,5 +1,5 @@
 # source: http://192.168.99.100:4466/box/dev
-# timestamp: Sat Jul 27 2019 22:31:42 GMT+0200 (GMT+02:00)
+# timestamp: Fri Sep 06 2019 18:24:29 GMT+0200 (GMT+02:00)
 
 type Agent implements Node {
   id: ID!
@@ -95,9 +95,7 @@ input AgentSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [AgentSubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -579,9 +577,7 @@ input ApiKeySubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [ApiKeySubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -1201,9 +1197,7 @@ input CapabilitySubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [CapabilitySubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -1668,9 +1662,7 @@ input ChatbotSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [ChatbotSubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -2220,9 +2212,7 @@ input ClientSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [ClientSubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -2707,9 +2697,7 @@ input DeviceDescriptorSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [DeviceDescriptorSubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -3060,9 +3048,7 @@ input DeviceProviderSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [DeviceProviderSubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -3662,9 +3648,7 @@ input DeviceSetSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [DeviceSetSubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -4683,9 +4667,7 @@ input PerformanceTestSessionAggregatedResultSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [PerformanceTestSessionAggregatedResultSubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -5615,9 +5597,7 @@ input PerformanceTestSessionJobSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [PerformanceTestSessionJobSubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -6040,9 +6020,7 @@ input PerformanceTestSessionSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [PerformanceTestSessionSubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -7044,9 +7022,7 @@ input RegisteredComponentSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [RegisteredComponentSubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -7821,9 +7797,7 @@ input SecurityAlertSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [SecurityAlertSubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -8298,9 +8272,7 @@ input SystemSettingsSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [SystemSettingsSubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -8610,9 +8582,7 @@ input TagSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [TagSubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -8896,9 +8866,7 @@ input TestProjectSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [TestProjectSubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -9700,9 +9668,7 @@ input TestSessionJobLogSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [TestSessionJobLogSubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -10298,9 +10264,7 @@ input TestSessionJobSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [TestSessionJobSubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -10792,9 +10756,7 @@ input TestSessionSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [TestSessionSubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -10823,6 +10785,7 @@ type TestSessionTestCaseResult implements Node {
   testcaseSource: String!
   success: Boolean!
   err: String
+  errDetails: String
   duration: Int
   steps(where: TestSessionTestCaseResultTranscriptWhereInput, orderBy: TestSessionTestCaseResultTranscriptOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [TestSessionTestCaseResultTranscript!]
   attachments(where: TestSessionTestCaseResultAttachmentWhereInput, orderBy: TestSessionTestCaseResultAttachmentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [TestSessionTestCaseResultAttachment!]
@@ -11139,9 +11102,7 @@ input TestSessionTestCaseResultAttachmentSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [TestSessionTestCaseResultAttachmentSubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -11449,6 +11410,7 @@ input TestSessionTestCaseResultCreateInput {
   testcaseSource: String!
   success: Boolean!
   err: String
+  errDetails: String
   duration: Int
   testSetFilename: String
   deviceName: String
@@ -11478,6 +11440,7 @@ input TestSessionTestCaseResultCreateWithoutAttachmentsInput {
   testcaseSource: String!
   success: Boolean!
   err: String
+  errDetails: String
   duration: Int
   testSetFilename: String
   deviceName: String
@@ -11496,6 +11459,7 @@ input TestSessionTestCaseResultCreateWithoutTestSessionInput {
   testcaseSource: String!
   success: Boolean!
   err: String
+  errDetails: String
   duration: Int
   testSetFilename: String
   deviceName: String
@@ -11533,6 +11497,8 @@ enum TestSessionTestCaseResultOrderByInput {
   success_DESC
   err_ASC
   err_DESC
+  errDetails_ASC
+  errDetails_DESC
   duration_ASC
   duration_DESC
   testSetFilename_ASC
@@ -11549,6 +11515,7 @@ type TestSessionTestCaseResultPreviousValues {
   testcaseSource: String!
   success: Boolean!
   err: String
+  errDetails: String
   duration: Int
   testSetFilename: String
   deviceName: String
@@ -11771,6 +11738,46 @@ input TestSessionTestCaseResultScalarWhereInput {
 
   """All values not ending with the given string."""
   err_not_ends_with: String
+  errDetails: String
+
+  """All values that are not equal to given value."""
+  errDetails_not: String
+
+  """All values that are contained in given list."""
+  errDetails_in: [String!]
+
+  """All values that are not contained in given list."""
+  errDetails_not_in: [String!]
+
+  """All values less than the given value."""
+  errDetails_lt: String
+
+  """All values less than or equal the given value."""
+  errDetails_lte: String
+
+  """All values greater than the given value."""
+  errDetails_gt: String
+
+  """All values greater than or equal the given value."""
+  errDetails_gte: String
+
+  """All values containing the given string."""
+  errDetails_contains: String
+
+  """All values not containing the given string."""
+  errDetails_not_contains: String
+
+  """All values starting with the given string."""
+  errDetails_starts_with: String
+
+  """All values not starting with the given string."""
+  errDetails_not_starts_with: String
+
+  """All values ending with the given string."""
+  errDetails_ends_with: String
+
+  """All values not ending with the given string."""
+  errDetails_not_ends_with: String
   duration: Int
 
   """All values that are not equal to given value."""
@@ -11892,9 +11899,7 @@ input TestSessionTestCaseResultSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [TestSessionTestCaseResultSubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -11926,6 +11931,7 @@ type TestSessionTestCaseResultTranscript implements Node {
   stepDuration: Int
   botDuration: Int
   err: String
+  errDetails: String
 }
 
 """A connection to a list of items."""
@@ -11947,6 +11953,7 @@ input TestSessionTestCaseResultTranscriptCreateInput {
   stepDuration: Int
   botDuration: Int
   err: String
+  errDetails: String
 }
 
 input TestSessionTestCaseResultTranscriptCreateManyInput {
@@ -11986,6 +11993,8 @@ enum TestSessionTestCaseResultTranscriptOrderByInput {
   botDuration_DESC
   err_ASC
   err_DESC
+  errDetails_ASC
+  errDetails_DESC
 }
 
 type TestSessionTestCaseResultTranscriptPreviousValues {
@@ -12000,6 +12009,7 @@ type TestSessionTestCaseResultTranscriptPreviousValues {
   stepDuration: Int
   botDuration: Int
   err: String
+  errDetails: String
 }
 
 input TestSessionTestCaseResultTranscriptScalarWhereInput {
@@ -12325,6 +12335,46 @@ input TestSessionTestCaseResultTranscriptScalarWhereInput {
 
   """All values not ending with the given string."""
   err_not_ends_with: String
+  errDetails: String
+
+  """All values that are not equal to given value."""
+  errDetails_not: String
+
+  """All values that are contained in given list."""
+  errDetails_in: [String!]
+
+  """All values that are not contained in given list."""
+  errDetails_not_in: [String!]
+
+  """All values less than the given value."""
+  errDetails_lt: String
+
+  """All values less than or equal the given value."""
+  errDetails_lte: String
+
+  """All values greater than the given value."""
+  errDetails_gt: String
+
+  """All values greater than or equal the given value."""
+  errDetails_gte: String
+
+  """All values containing the given string."""
+  errDetails_contains: String
+
+  """All values not containing the given string."""
+  errDetails_not_contains: String
+
+  """All values starting with the given string."""
+  errDetails_starts_with: String
+
+  """All values not starting with the given string."""
+  errDetails_not_starts_with: String
+
+  """All values ending with the given string."""
+  errDetails_ends_with: String
+
+  """All values not ending with the given string."""
+  errDetails_not_ends_with: String
 }
 
 type TestSessionTestCaseResultTranscriptSubscriptionPayload {
@@ -12344,9 +12394,7 @@ input TestSessionTestCaseResultTranscriptSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [TestSessionTestCaseResultTranscriptSubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -12375,6 +12423,7 @@ input TestSessionTestCaseResultTranscriptUpdateDataInput {
   stepDuration: Int
   botDuration: Int
   err: String
+  errDetails: String
 }
 
 input TestSessionTestCaseResultTranscriptUpdateInput {
@@ -12386,6 +12435,7 @@ input TestSessionTestCaseResultTranscriptUpdateInput {
   stepDuration: Int
   botDuration: Int
   err: String
+  errDetails: String
 }
 
 input TestSessionTestCaseResultTranscriptUpdateManyDataInput {
@@ -12397,6 +12447,7 @@ input TestSessionTestCaseResultTranscriptUpdateManyDataInput {
   stepDuration: Int
   botDuration: Int
   err: String
+  errDetails: String
 }
 
 input TestSessionTestCaseResultTranscriptUpdateManyInput {
@@ -12420,6 +12471,7 @@ input TestSessionTestCaseResultTranscriptUpdateManyMutationInput {
   stepDuration: Int
   botDuration: Int
   err: String
+  errDetails: String
 }
 
 input TestSessionTestCaseResultTranscriptUpdateManyWithWhereNestedInput {
@@ -12761,6 +12813,46 @@ input TestSessionTestCaseResultTranscriptWhereInput {
 
   """All values not ending with the given string."""
   err_not_ends_with: String
+  errDetails: String
+
+  """All values that are not equal to given value."""
+  errDetails_not: String
+
+  """All values that are contained in given list."""
+  errDetails_in: [String!]
+
+  """All values that are not contained in given list."""
+  errDetails_not_in: [String!]
+
+  """All values less than the given value."""
+  errDetails_lt: String
+
+  """All values less than or equal the given value."""
+  errDetails_lte: String
+
+  """All values greater than the given value."""
+  errDetails_gt: String
+
+  """All values greater than or equal the given value."""
+  errDetails_gte: String
+
+  """All values containing the given string."""
+  errDetails_contains: String
+
+  """All values not containing the given string."""
+  errDetails_not_contains: String
+
+  """All values starting with the given string."""
+  errDetails_starts_with: String
+
+  """All values not starting with the given string."""
+  errDetails_not_starts_with: String
+
+  """All values ending with the given string."""
+  errDetails_ends_with: String
+
+  """All values not ending with the given string."""
+  errDetails_not_ends_with: String
 }
 
 input TestSessionTestCaseResultTranscriptWhereUniqueInput {
@@ -12772,6 +12864,7 @@ input TestSessionTestCaseResultUpdateInput {
   testcaseSource: String
   success: Boolean
   err: String
+  errDetails: String
   duration: Int
   testSetFilename: String
   deviceName: String
@@ -12791,6 +12884,7 @@ input TestSessionTestCaseResultUpdateManyDataInput {
   testcaseSource: String
   success: Boolean
   err: String
+  errDetails: String
   duration: Int
   testSetFilename: String
   deviceName: String
@@ -12801,6 +12895,7 @@ input TestSessionTestCaseResultUpdateManyMutationInput {
   testcaseSource: String
   success: Boolean
   err: String
+  errDetails: String
   duration: Int
   testSetFilename: String
   deviceName: String
@@ -12835,6 +12930,7 @@ input TestSessionTestCaseResultUpdateWithoutAttachmentsDataInput {
   testcaseSource: String
   success: Boolean
   err: String
+  errDetails: String
   duration: Int
   testSetFilename: String
   deviceName: String
@@ -12853,6 +12949,7 @@ input TestSessionTestCaseResultUpdateWithoutTestSessionDataInput {
   testcaseSource: String
   success: Boolean
   err: String
+  errDetails: String
   duration: Int
   testSetFilename: String
   deviceName: String
@@ -13099,6 +13196,46 @@ input TestSessionTestCaseResultWhereInput {
 
   """All values not ending with the given string."""
   err_not_ends_with: String
+  errDetails: String
+
+  """All values that are not equal to given value."""
+  errDetails_not: String
+
+  """All values that are contained in given list."""
+  errDetails_in: [String!]
+
+  """All values that are not contained in given list."""
+  errDetails_not_in: [String!]
+
+  """All values less than the given value."""
+  errDetails_lt: String
+
+  """All values less than or equal the given value."""
+  errDetails_lte: String
+
+  """All values greater than the given value."""
+  errDetails_gt: String
+
+  """All values greater than or equal the given value."""
+  errDetails_gte: String
+
+  """All values containing the given string."""
+  errDetails_contains: String
+
+  """All values not containing the given string."""
+  errDetails_not_contains: String
+
+  """All values starting with the given string."""
+  errDetails_starts_with: String
+
+  """All values not starting with the given string."""
+  errDetails_not_starts_with: String
+
+  """All values ending with the given string."""
+  errDetails_ends_with: String
+
+  """All values not ending with the given string."""
+  errDetails_not_ends_with: String
   duration: Int
 
   """All values that are not equal to given value."""
@@ -14008,9 +14145,7 @@ input TestSetCompiledConvoSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [TestSetCompiledConvoSubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -14593,7 +14728,7 @@ type TestSetExcel implements Node {
   updatedAt: DateTime!
   name: String!
   filename: String!
-  filecontent: String!
+  filecontent: String
   testSet: TestSet!
 }
 
@@ -14610,7 +14745,7 @@ type TestSetExcelConnection {
 input TestSetExcelCreateInput {
   name: String!
   filename: String!
-  filecontent: String!
+  filecontent: String
   testSet: TestSetCreateOneWithoutExcelsInput!
 }
 
@@ -14627,7 +14762,7 @@ input TestSetExcelCreateOneInput {
 input TestSetExcelCreateWithoutTestSetInput {
   name: String!
   filename: String!
-  filecontent: String!
+  filecontent: String
 }
 
 """An edge in a connection."""
@@ -14660,7 +14795,7 @@ type TestSetExcelPreviousValues {
   updatedAt: DateTime!
   name: String!
   filename: String!
-  filecontent: String!
+  filecontent: String
 }
 
 input TestSetExcelScalarWhereInput {
@@ -14895,9 +15030,7 @@ input TestSetExcelSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [TestSetExcelSubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -15525,9 +15658,7 @@ input TestSetFolderSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [TestSetFolderSubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -16438,9 +16569,7 @@ input TestSetRepositorySubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [TestSetRepositorySubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -17841,9 +17970,7 @@ input TestSetScriptSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [TestSetScriptSubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -18202,9 +18329,7 @@ input TestSetSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [TestSetSubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -19521,9 +19646,7 @@ input UserRoleSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [UserRoleSubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
@@ -19796,9 +19919,7 @@ input UserSubscriptionWhereInput {
   """Logical NOT on all given filters combined by AND."""
   NOT: [UserSubscriptionWhereInput!]
 
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
+  """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
 
   """
