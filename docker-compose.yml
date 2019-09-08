@@ -7,6 +7,7 @@ services:
     environment:
       PRISMA_ENDPOINT: http://prisma:4466/box/ce
       BOTIUMBOX_QUEUE_REDISURL: redis://redis:6379
+      TESTSETDIR_PUBLIC: ./testsets
       DEBUG: botium*
     depends_on:
       - redis
@@ -14,10 +15,10 @@ services:
     restart: always
     volumes:
       - ./testsets:/app/server/testsets
+      - ./testsets:/app/agent/testsets
       - ./botiumwork:/app/server/botiumwork
       - ./botiumwork:/app/agent/botiumwork
       - ./resources:/app/server/resources
-      - ./resources:/app/agent/resources
   prisma:
     image: prismagraphql/prisma:1.25.4
     depends_on:
