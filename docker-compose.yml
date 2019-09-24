@@ -18,6 +18,7 @@ services:
       - ./botiumwork:/app/server/botiumwork
       - ./botiumwork:/app/agent/botiumwork
       - ./resources:/app/server/resources
+      - ./resources:/app/agent/resources
   prisma:
     image: prismagraphql/prisma:1.25.4
     depends_on:
