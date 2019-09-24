@@ -8,6 +8,7 @@ services:
       PRISMA_ENDPOINT: http://prisma:4466/box/ce
       BOTIUMBOX_QUEUE_REDISURL: redis://redis:6379
       DEBUG: botium*
+      TESTSETDIR_PUBLIC: ./testsets
     depends_on:
       - redis
       - prisma
