@@ -1,7 +1,7 @@
 version: '2'
 services:
   web:
-    image: botium/botium-box-ce:box-latest
+    image: botium/botium-box-ce:${BOX_VERSION}
     ports:
      - "4000:4000"
     environment:
