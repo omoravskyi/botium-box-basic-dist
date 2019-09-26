@@ -55,4 +55,8 @@ Default usernames:
 
 Default password: "nooneknows"
 
+## Install Samples
+
+Botium Box comes with some sample projects installed. You can find more samples to import into Botium Box [here](https://botium.atlassian.net/wiki/spaces/BOTIUM/pages/57671681/Howto+Import+Botium+Samples).
+
 Have fun.
