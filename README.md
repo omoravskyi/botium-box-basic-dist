@@ -6,6 +6,10 @@ Botium Box is running on standard components available for free. You can install
 
 **_IF YOU LIKE WHAT YOU SEE, PLEASE CONSIDER GIVING US A STAR ON GITHUB!_**
 
+## Release Notes
+
+Check them out [in the Botium Wiki](https://botium.atlassian.net/wiki/spaces/BOTIUM/pages/20807681/Botium+Box+Release+Notes)
+
 ## Botium Box Installation
 
 You can run Botium Box on your own server on-premise, or on a cloud server - for example, see [here](https://acloudxpert.com/how-to-install-docker-compose-on-amazon-linux-ami/) for instructions how to set up docker and docker-compose on an Amazon EC2 instance.
