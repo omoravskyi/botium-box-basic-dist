@@ -1,7 +1,0 @@
-{
-  "botium": {
-    "Capabilities": {
-      "SCRIPTING_ENABLE_MULTIPLE_ASSERT_ERRORS": true
-    }
-  }
-}
