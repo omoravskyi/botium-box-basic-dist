@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: botium-box-ce-configmap
+  namespace: botium-box-ce
+  labels:
+    name: config
+    app: botium-box-ce
+data:
+  PRISMA_ENDPOINT: http://prisma:4466/box/ce
+  BOTIUMBOX_QUEUE_REDISURL: redis://redis:6379
+  PRISMA_CONFIG: |
+    port: 4466
+    databases:
+      default:
+        connector: mysql
+        host: botium-dev-ce.cgomqccdbdrn.eu-west-1.rds.amazonaws.com
+        port: 3306
+        user: root
+        password: 19M4N5sn1dzAaUGp9Ji9
+        migrations: true
