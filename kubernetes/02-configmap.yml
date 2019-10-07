@@ -14,8 +14,8 @@ data:
     databases:
       default:
         connector: mysql
-        host: botium-dev-ce.cgomqccdbdrn.eu-west-1.rds.amazonaws.com
+        host: my-mysql-host-name
         port: 3306
-        user: root
-        password: 19M4N5sn1dzAaUGp9Ji9
+        user: my-mysql-user-name
+        password: my-mysql-password
         migrations: true

@@ -7,6 +7,7 @@ services:
     environment:
       PRISMA_ENDPOINT: http://prisma:4466/box/ce
       BOTIUMBOX_QUEUE_REDISURL: redis://redis:6379
+      BOTIUMBOX_AGENT_NAME: Botium Agent 1
       DEBUG: botium*
       TESTSETDIR_PUBLIC: ./testsets
     depends_on:
