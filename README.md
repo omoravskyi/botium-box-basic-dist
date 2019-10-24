@@ -10,6 +10,34 @@ Botium Box is running on standard components available for free. You can install
 
 Check them out [in the Botium Wiki](https://botium.atlassian.net/wiki/spaces/BOTIUM/pages/20807681/Botium+Box+Release+Notes)
 
+## Getting Botium Box
+
+All you need is part of this Github repository. You can download via _git_ or via _curl_ or manual download, your choice.
+
+### Using git
+
+    > git clone https://github.com/codeforequity-at/botium-box-basic-dist.git
+    > cd botium-box-basic-dist
+
+If you already have installed it before and just doing an update, a _git pull_ is enough:
+
+    > cd botium-box-basic-dist
+    > git pull
+
+_In case of file conflicts, if you changed the files locally, you will have to merge the changes._
+
+### Using curl
+
+    > curl -L --output botium-box-basic-dist.zip https://github.com/codeforequity-at/botium-box-basic-dist/archive/master.zip
+    > unzip botium-box-basic-dist.zip
+    > cd botium-box-basic-dist-master
+
+_If you already have installed it before and just doing an update, you have to download to another location and merge the new files to this directory._
+
+### Manual download
+
+Just click on the _Clone or download_ button above and use _Download ZIP_, unpack the file locally.
+
 ## Botium Box Installation on Kubernetes
 
 You can run Botium Box on your Kubernetes environment, locally in [Minikube](https://kubernetes.io/de/docs/setup/minikube/), or on a cloud server as [Amazon Elastic Kubernetes Service](https://aws.amazon.com/de/eks/).
@@ -70,22 +98,19 @@ _If you have a firewall, you have to make sure that it allows inbound connection
 
 The Docker-Compose file contains all prerequisites for running Botium Box and is the recommended and most easy way to run Botium Box.
 
-1. Download [docker-compose.yml](https://github.com/codeforequity-at/botium-box-basic-dist/blob/master/docker-compose.yml)
-	> curl --output docker-compose.yml https://raw.githubusercontent.com/codeforequity-at/botium-box-basic-dist/master/docker-compose.yml
-
-2. Start Botium Box by running docker-compose:
+1. Start Botium Box by running docker-compose:
 	> docker-compose up -d
 
-3. Show log output from docker-compose (optional):
+2. Show log output from docker-compose (optional):
 	> docker-compose up -d
 
-4. Point your browser to http://127.0.0.1:4000 (or the IP address of your cloud server)
+3. Point your browser to http://127.0.0.1:4000 (or the IP address of your cloud server)
 
 _To make your Botium testsets, resources and working directory point to a folder of your choice, you have to edit the docker-compose.yml file!_
 
 ### Update Botium Box
 
-If you already have installed Botium Box before and just want to update to the latest Botium Box build, run this:
+If you already have installed Botium Box before and just want to update to the latest Botium Box build, first get the new files from this repository (see _Getting Botium Box_ above), and then use docker-compose to pull the new images:
 
 ```
 > docker-compose stop
