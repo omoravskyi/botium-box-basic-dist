@@ -54,6 +54,11 @@ spec:
               value: /app/storage/resources
             - name: TEMPDIR
               value: /app/storage/botiumwork
+            - name: LICENSE_KEY
+              valueFrom:
+                configMapKeyRef:
+                  name: botium-box-ce-configmap
+                  key: LICENSE_KEY
             - name: PRISMA_ENDPOINT
               valueFrom:
                 configMapKeyRef:

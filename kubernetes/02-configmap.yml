@@ -7,6 +7,7 @@ metadata:
     name: config
     app: botium-box-ce
 data:
+  LICENSE_KEY: my-botium-box-license-key
   PRISMA_ENDPOINT: http://prisma:4466/box/ce
   BOTIUMBOX_QUEUE_REDISURL: redis://redis:6379
   PRISMA_CONFIG: |
