@@ -64,13 +64,15 @@ Download this Git repository to your local workstation.
 
 ### Adapting Configuration
 
-In the file _kubernetes/02-configmap.yml_, enter your MySQL connection information:
-* my-mysql-host-name
-* my-mysql-user-name
-* my-mysql-password
+Copy the file _kubernetes/02-configmap.yml.template_ to _kubernetes/02-configmap.yml_.
 
-In the file _kubernetes/02-configmap.yml_, enter the contents of the license key file your received:
-* my-botium-box-license-key
+In the file _kubernetes/02-configmap.yml_, enter your MySQL connection information for the placeholders:
+* {{ my-mysql-host-name }}
+* {{ my-mysql-user-name }}
+* {{ my-mysql-password }}
+
+In the file _kubernetes/02-configmap.yml_, enter the **contents** of the license key file your received:
+* {{ my-botium-box-license-key }}
 
 ### Deploy to Kubernetes
 
@@ -126,7 +128,7 @@ The Docker-Compose file contains all prerequisites for running Botium Box and is
 	> docker-compose up -d
 
 2. Show log output from docker-compose (optional):
-	> docker-compose up -d
+	> docker-compose logs -f
 
 3. Point your browser to http://127.0.0.1:4000 (or the IP address of your cloud server)
 
@@ -138,9 +140,9 @@ If you already have installed Botium Box before and just want to update to the l
 
 ```
 > docker-compose stop
+> docker-compose rm web
 > docker-compose pull
 > docker-compose up -d
-> docker-compose logs -f
 ```
 
 ## Login to Botium Box
