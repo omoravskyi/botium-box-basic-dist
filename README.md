@@ -38,6 +38,10 @@ _If you already have installed it before and just doing an update, you have to d
 
 Just click on the _Clone or download_ button above and use _Download ZIP_, unpack the file locally.
 
+## Getting Community Edition License
+
+Point your browser to https://registration.botiumbox.com to register and apply for a community license. You will receive it by email, click the _Download License Key_ button to get your license file named _license.key_, which contains a license key valid forever.
+
 ## Botium Box Installation on Kubernetes
 
 You can run Botium Box on your Kubernetes environment, locally in [Minikube](https://kubernetes.io/de/docs/setup/minikube/), or on a cloud server as [Amazon Elastic Kubernetes Service](https://aws.amazon.com/de/eks/).
@@ -60,10 +64,15 @@ Download this Git repository to your local workstation.
 
 ### Adapting Configuration
 
-In the file _kubernetes/02-configmap.yml_, enter your MySQL connection information:
-* my-mysql-host-name
-* my-mysql-user-name
-* my-mysql-password
+Copy the file _kubernetes/02-configmap.yml.template_ to _kubernetes/02-configmap.yml_.
+
+In the file _kubernetes/02-configmap.yml_, enter your MySQL connection information for the placeholders:
+* {{ my-mysql-host-name }}
+* {{ my-mysql-user-name }}
+* {{ my-mysql-password }}
+
+In the file _kubernetes/02-configmap.yml_, enter the **contents** of the license key file your received:
+* {{ my-botium-box-license-key }}
 
 ### Deploy to Kubernetes
 
@@ -83,6 +92,17 @@ See the log output of Botium Box:
 
 	> kubectl logs -l name=box -n botium-box-ce
 
+### Changing Configuration and Restarting
+
+When changing the configuration (for example after changing the license key), run this command again:
+
+   > kubectl apply -f ./kubernetes
+
+To restart the Botium Box, scale down to 0 replicas and scale up again:
+
+   > kubectl scale --replicas=0 deployment box -n botium-box-ce
+   > kubectl scale --replicas=1 deployment box -n botium-box-ce
+
 ## Botium Box Installation with Docker
 
 You can run Botium Box on your own server on-premise, or on a cloud server - for example, see [here](https://acloudxpert.com/how-to-install-docker-compose-on-amazon-linux-ami/) for instructions how to set up docker and docker-compose on an Amazon EC2 instance.
@@ -94,6 +114,12 @@ You can run Botium Box on your own server on-premise, or on a cloud server - for
 
 _If you have a firewall, you have to make sure that it allows inbound connections to port 4000 (default Botium Box listen port), or any other port if you are not using the default port_
 
+### Adapting Configuration
+
+In case you are using your own MySQL database, adapt the configuration in _docker-compose.yml_.
+
+Place the license key file _license.key_ in the _resources_ directory to make it available to Botium Box.
+
 ### Run Botium Box
 
 The Docker-Compose file contains all prerequisites for running Botium Box and is the recommended and most easy way to run Botium Box.
@@ -102,7 +128,7 @@ The Docker-Compose file contains all prerequisites for running Botium Box and is
 	> docker-compose up -d
 
 2. Show log output from docker-compose (optional):
-	> docker-compose up -d
+	> docker-compose logs -f
 
 3. Point your browser to http://127.0.0.1:4000 (or the IP address of your cloud server)
 
@@ -114,9 +140,9 @@ If you already have installed Botium Box before and just want to update to the l
 
 ```
 > docker-compose stop
+> docker-compose rm web
 > docker-compose pull
 > docker-compose up -d
-> docker-compose logs -f
 ```
 
 ## Login to Botium Box

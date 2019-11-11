@@ -36,7 +36,7 @@ spec:
     spec:
       containers:
         - name: box
-          image: botium/botium-box-ce:1.8.0
+          image: botium/botium-box-ce:2.0.0
           ports:
             - name: box-4000
               containerPort: 4000
@@ -54,6 +54,11 @@ spec:
               value: /app/storage/resources
             - name: TEMPDIR
               value: /app/storage/botiumwork
+            - name: LICENSE_KEY
+              valueFrom:
+                configMapKeyRef:
+                  name: botium-box-ce-configmap
+                  key: LICENSE_KEY
             - name: PRISMA_ENDPOINT
               valueFrom:
                 configMapKeyRef:
