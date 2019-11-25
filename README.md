@@ -51,6 +51,8 @@ You can install Botium Box with the included AWS CloudFormation template.
 1. Open the Cloud Formation service in the AWS Console and create a new CloudFormation stack
 2. Upload the CloudFormation template file _botium-box-ce-single-instance.template_ from the _cloudformation_ folder of this repository.
 3. Enter the Botium Box License key you received earlier (Copy & Paste file content from _license.key_) and select values for other parameters.
+   * Use **at least** a _t2.small_ instance type for first steps
+   * Use **at least** a _t2.medium_ instance type for production usages
 4. After some minutes, the CloudFormation stack is ready, you can see progress in the _Events_ and _Resources_ tabs of the stack
 5. In the _Outputs_ tab, the URL for accessing Botium Box is shown
 
@@ -166,6 +168,10 @@ Default usernames:
 * guest
 
 Default password: "nooneknows"
+
+## First Steps
+
+See the [Botium Wiki](https://botium.atlassian.net/wiki/spaces/BOTIUM/pages/68845585/Tutorial+First+Steps+in+Botium+Box) for your first steps in Botium Box
 
 ## Install Samples
 
