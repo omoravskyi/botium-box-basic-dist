@@ -42,6 +42,18 @@ Just click on the _Clone or download_ button above and use _Download ZIP_, unpac
 
 Point your browser to https://registration.botiumbox.com to register and apply for a community license. You will receive it by email, click the _Download License Key_ button to get your license file named _license.key_, which contains a license key valid forever.
 
+## Botium Box Installation with AWS CloudFormation
+
+You can install Botium Box with the included AWS CloudFormation template.
+
+**You need a working AWS account. There will be costs involved for the created EC2 instance**
+
+1. Open the Cloud Formation service in the AWS Console and create a new CloudFormation stack
+2. Upload the CloudFormation template file _botium-box-ce-single-instance.template_ from the _cloudformation_ folder of this repository.
+3. Enter the Botium Box License key you received earlier (Copy & Paste file content from _license.key_) and select values for other parameters.
+4. After some minutes, the CloudFormation stack is ready, you can see progress in the _Events_ and _Resources_ tabs of the stack
+5. In the _Outputs_ tab, the URL for accessing Botium Box is shown
+
 ## Botium Box Installation on Kubernetes
 
 You can run Botium Box on your Kubernetes environment, locally in [Minikube](https://kubernetes.io/de/docs/setup/minikube/), or on a cloud server as [Amazon Elastic Kubernetes Service](https://aws.amazon.com/de/eks/).
