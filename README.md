@@ -1,5 +1,7 @@
 # Botium Box - Community Edition
 
+![Docker Pulls](https://img.shields.io/docker/pulls/botium/botium-box-ce)
+
 Chatbots are driving the industry. With Botium we are driving chatbots. Botium is a suite of open source software components that support chatbot makers in training and quality assurance.
 
 Botium Box is running on standard components available for free. You can install it on your own server (on premise), or use cloud providers for serverless installation, or even a mixture of those approaches.
