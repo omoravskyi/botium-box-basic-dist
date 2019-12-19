@@ -106,6 +106,10 @@ See the log output of Botium Box:
 
 	> kubectl logs -l name=box -n botium-box-ce
 
+### Use Kubernetes Dashboard (optional)
+
+Optionally you can use Kubernetes web dashboard for basic management operations for [Amazon EKS](https://docs.aws.amazon.com/eks/latest/userguide/dashboard-tutorial.html) and for [Azure AKS](https://docs.microsoft.com/en-us/azure/aks/kubernetes-dashboard).
+
 ### Changing Configuration and Restarting
 
 When changing the configuration (for example after changing the license key), run this command again:
