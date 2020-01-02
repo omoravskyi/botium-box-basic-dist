@@ -5,7 +5,7 @@ services:
     ports:
      - "4000:4000"
     environment:
-      PRISMA_ENDPOINT: http://prisma:4466/box/ce
+      PRISMA_ENDPOINT: http://prisma:4466/box/ce13
       BOTIUMBOX_QUEUE_REDISURL: redis://redis:6379
       BOTIUMBOX_AGENT_NAME: Botium Agent 1
       DEBUG: botium*
