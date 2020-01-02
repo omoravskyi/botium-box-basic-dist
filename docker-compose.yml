@@ -22,7 +22,7 @@ services:
       - ./resources:/app/server/resources
       - ./resources:/app/agent/resources
   prisma:
-    image: prismagraphql/prisma:1.25.4
+    image: prismagraphql/prisma:1.34.10
     depends_on:
       - mysql
     restart: always
