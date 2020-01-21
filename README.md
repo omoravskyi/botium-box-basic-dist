@@ -165,6 +165,12 @@ If you already have installed Botium Box before and just want to update to the l
 > docker-compose up -d
 ```
 
+## Data Migration from Previous Release
+
+In most cases, the data will be migrated automatically. Under rare circumstances it will happen that you have to kick of the data migration manually (for example, with Botium Box Release 2.2).
+
+See [Botium Wiki](https://botium.atlassian.net/wiki/spaces/BOTIUM/pages/33224/Botium+Box+Migration+Steps) for instructions.
+
 ## Login to Botium Box
 
 Default usernames: 
