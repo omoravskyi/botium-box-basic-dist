@@ -216,3 +216,5 @@ No.
 **Can you help me setting up MySQL?**
 
 No.
+
+**While these answers may sound rude, we are by no means experts in any of these technologies, and there are better places to ask for help on these topics!**
